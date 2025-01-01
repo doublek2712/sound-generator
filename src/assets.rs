@@ -37,6 +37,85 @@ pub const MAJOR_PENTATONIC_SCALE_NOTES: &[Letter] =
 pub const MINOR_PENTATONIC_SCALE_NOTES: &[Letter] =
     &[Letter::C, Letter::Eb, Letter::F, Letter::G, Letter::Bb];
 
+pub fn format_letter_octave(letter_octave: LetterOctave) -> String {
+    let letter_name = match letter_octave.letter() {
+        Letter::C => "C",
+        Letter::Csh => "C#",
+        Letter::Db => "Db",
+        Letter::D => "D",
+        Letter::Dsh => "D#",
+        Letter::Eb => "Eb",
+        Letter::E => "E",
+        Letter::F => "F",
+        Letter::Fsh => "F#",
+        Letter::Gb => "Gb",
+        Letter::G => "G",
+        Letter::Gsh => "G#",
+        Letter::Ab => "Ab",
+        Letter::A => "A",
+        Letter::Ash => "A#",
+        Letter::Bb => "Bb",
+        Letter::B => "B",
+    };
+    format!("{}{}", letter_name, letter_octave.octave())
+}
+
+#[derive(Clone, Copy, PartialEq)]
+pub enum NoteDurationLetter {
+    W,
+    H,
+    Q,
+    E,
+    S,
+    T,
+}
+
+pub const NOTE_DURATION: [f32; 6] = [4.0, 2.0, 1.0, 0.5, 0.25, 0.125];
+
+pub const STRAIGHT_RHYTHM_PATTERN: &[NoteDurationLetter] = &[
+    NoteDurationLetter::Q,
+    NoteDurationLetter::Q,
+    NoteDurationLetter::Q,
+    NoteDurationLetter::Q,
+];
+pub const SYNCOPATED_RHYTHM_PATTERN: &[NoteDurationLetter] = &[
+    NoteDurationLetter::Q,
+    NoteDurationLetter::S,
+    NoteDurationLetter::Q,
+    NoteDurationLetter::S,
+    NoteDurationLetter::Q,
+    NoteDurationLetter::S,
+];
+pub const FAST_RHYTHM_PATTERN: &[NoteDurationLetter] = &[
+    NoteDurationLetter::E,
+    NoteDurationLetter::E,
+    NoteDurationLetter::E,
+    NoteDurationLetter::E,
+    NoteDurationLetter::E,
+    NoteDurationLetter::E,
+    NoteDurationLetter::E,
+    NoteDurationLetter::E,
+];
+pub const LONG_AND_SHORT_RHYTHM_PATTERN: &[NoteDurationLetter] = &[
+    NoteDurationLetter::H,
+    NoteDurationLetter::E,
+    NoteDurationLetter::E,
+    NoteDurationLetter::H,
+];
+pub const COMPLEX_RHYTHM_PATTERN: &[NoteDurationLetter] = &[
+    NoteDurationLetter::Q,
+    NoteDurationLetter::E,
+    NoteDurationLetter::E,
+    NoteDurationLetter::Q,
+    NoteDurationLetter::S,
+    NoteDurationLetter::E,
+    NoteDurationLetter::E,
+];
+pub const BEAT_PER_BAR_DIVIDE_FOR_FOUR: [u32; 4] = [1, 1, 1, 1];
+pub const BEAT_PER_BAR_DIVIDE_FOR_SIX: [u32; 4] = [2, 2, 2, 0];
+pub const BEAT_PER_BAR_DIVIDE_FOR_SEVEN: [u32; 4] = [1, 2, 1, 3];
+pub const BEAT_PER_BAR_DIVIDE_FOR_EIGTH: [u32; 4] = [2, 2, 2, 2];
+
 pub const INSTRUMENT_LIST: &[&str] = &[
     "Acoustic Grand Piano",
     "Bright Acoustic Piano",
